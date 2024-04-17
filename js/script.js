@@ -28,6 +28,12 @@ const getRange = (array) =>{
   return Math.max(...array) - Math.min(...array);
 }
 
+const getVariance = (array) => {
+  const mean = getMean(array);
+  const differences  = array.map(el => el - mean);
+  const squaredDifferences  = differences.map(el => el ** 2);
+  const sumSquaredDifferences  = squaredDifferences.reduce((acc ,el) =>  acc + el ,0);
+}
 
 function calculate() {
   const value = document.querySelector("#numbers").value;
@@ -36,8 +42,10 @@ function calculate() {
   const mean = getMean(numbers);
   const median = getMedian(numbers);
   const mode = getMode(numbers);
+  const range = getRange(numbers);
   document.querySelector("#mean").textContent = mean;
   document.querySelector("#median").textContent = median;
   document.querySelector("#mode").textContent = mode;
-
+  document.querySelector("#range").textContent = range;
+  
 }
